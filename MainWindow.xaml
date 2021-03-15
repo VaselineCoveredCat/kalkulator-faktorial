@@ -1,0 +1,77 @@
+﻿<Window x:Class="Kalkulator_Faktorial.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Kalkulator Faktorial" Width="320" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Height="180" Background="#FF212121" Foreground="#FFFAFAFA">
+    
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Roboto Light"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="#FFE0E0E0"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Roboto Light"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="Background" Value="#FF424242"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Roboto"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="Background" Value="#FFBDBDBD"/>
+        </Style>
+        
+        <ControlTemplate x:Key="ButtonTemplate1" TargetType="{x:Type ButtonBase}">
+            <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Border>
+            
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" TargetName="border" Value="#FF9E9E9E"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+    
+    <Border Padding="10">
+        <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Text="Angka"/>
+                <TextBox x:Name="TeksAngka" Grid.Column="1" ToolTip="Harus angka bulat"/>
+            </Grid>
+            
+            <Grid Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Text="Hasil"/>
+                <TextBox x:Name="TeksHasil" Grid.Column="1" IsReadOnly="True"/>
+            </Grid>
+            
+            <Grid Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Button Template="{DynamicResource ButtonTemplate1}" x:Name="Hitung" Content="Hitung" Margin="0,0,5,0" Click="Hitung_Click"/>
+                <Button Template="{DynamicResource ButtonTemplate1}" x:Name="Keluar" Content="Keluar" Grid.Column="1" Margin="5,0,0,0" Click="Keluar_Click"/>
+            </Grid>
+        </StackPanel>
+    </Border>
+</Window>
